@@ -5,6 +5,12 @@ body {
   background-color: #ccc;
   color: #4D4D4D;
 }
+.streetview .canvas {
+  width: 100%;
+  height: 0px;
+  position: absolute;
+  z-index: -1;
+}
 
 a, a:active {
   text-decoration: none;
@@ -23,7 +29,7 @@ a:hover, a:visited {
   color: #3b75d1;
 }
 
-img.bg {
+img.bg,  {
   min-height: 100%;
   min-width: 1024px;
   width: 100%;
@@ -96,9 +102,9 @@ img.bg {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
-  padding: 7px 20px 5px 20px;
+  padding: 9px 20px 5px 20px;
   background-color: #3b75d1;
-  width: 180px;
+  width: 182px;
   text-transform: uppercase;
   font-size: 85%;
   text-align: center;
@@ -141,24 +147,24 @@ img.bg {
 }
 .map .canvas {
   width: 444px;
-  height: 215px;
+  height: 204px;
 }
 .signup .blurb {
-  font-size: 170%;
+  font-size: 160%;
   line-height: 1.2em;
 }
 .signup .blurb p {
   font-size: 70%;
-  padding: 1em 0em 1.5em 0em;
+  padding: 1em 0em 1.25em 0em;
   line-height: 1.15em;
 }
 .signup .text-input {
   font-family: "Franklin Gothic", Verdana, Arial, sans-serif; 
-  width: 293px;
+  width: 295px;
   height: 36px;
   color: #999;
-  font-size: 85%;
-  padding: 0 10px;
+  font-size: 80%;
+  padding: 0 10px 0 8px;
   border: 3px solid #E6E6E6;
   margin-right: 10px;
   -webkit-border-radius: 5px;
@@ -169,6 +175,9 @@ img.bg {
 }
 .signup .text-input:focus {
   color: #333;
+  font-size: 90%;
+  border: 3px solid #3b75d1;
+  outline: none;
 }
 
 .stream {
@@ -187,7 +196,7 @@ img.bg {
 .social .like-box {
   padding: 10px 20px;
   background-color: white;
-  height: 550px;
+  height: 495px;
   overflow: hidden;
 }
 
@@ -199,7 +208,7 @@ img.bg {
   background-color: #fff;
   color: #4D4D4D;
   font-size: 75%;
-  min-height: 570px;
+  min-height: 515px;
 }
 .coding .commits li {
   border-bottom: 1px solid #dddcdd;
@@ -236,9 +245,9 @@ img.bg {
 }
 
 .stream .header {
-  padding: 0.2em 20px 0.6em 20px;
+  padding: 0.25em 20px 0.75em 20px;
   border-bottom: 3px solid #a5a6a7;
-  font-size: 112%;
+  font-size: 105%;
 }
 .stream .footer {
   padding: 0.6em 20px 0.2em 20px;
@@ -246,10 +255,10 @@ img.bg {
   font-size: 112%;
 }
 
-
 .bottom.strap {
   background-color: #a5a6a7;
   border-top: 1px solid #BBB;
+  margin-bottom: 0px;
   font-size: 80%;
   color: #FFF;
 }

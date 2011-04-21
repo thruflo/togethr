@@ -1,3 +1,5 @@
+$.togethr = {};
+
 $(document).ready(
   function(){
     
@@ -7,30 +9,31 @@ $(document).ready(
         'user': 'tav', 
         'repo': 'togethr', 
         'branch': 'master', 
-        'last': 6, 
-        'limitMessageTo': 90
+        'last': 5
       }
     );
     
-    // http://search.twitter.com/search.json?geocode=37.781157,-122.398720,1mi
-    
-    /*
-    
-    var render_background = function (location) {
-      var url = 'http://maps.google.com/maps/api/staticmap';
-      var params = {
-        'center': location.latitude + ',' + location.longitude,
-        'format': 'png32',
-        'zoom': '12',
-        'size': '640x640',
-        'sensor': false
+    var render_streetview = function (location) {
+      var ll = new google.maps.LatLng(location.latitude, location.longitude);
+      var options = {
+        'position': ll,
+        'pov': {
+          heading: 165,
+          pitch: 0,
+          zoom: 1
+        },
+        'addressControl': false,
+        'enableCloseButton': false,
+        'linksControl': false,
+        'panControl': false,
+        'zoomControl': false
       };
-      var img = '<img src="' + url + '?' + $.param(params) + '" class="bg" />';
-      $('body').prepend(img);
+      var h = $(document).height() - 20;
+      var target = $('.streetview .canvas');
+      target.css({'height': h});
+      var panorama = new google.maps.StreetViewPanorama(target.get(0), options);
+      panorama.setVisible(true);
     };
-    
-    */
-    
     var render_map = function (location) {
       var ll = new google.maps.LatLng(location.latitude, location.longitude);
       var options = {
@@ -39,20 +42,46 @@ $(document).ready(
         'center': ll,
         'mapTypeId': google.maps.MapTypeId.ROADMAP
       };
-      var target = $('.map .canvas').get(0);
-      var map = new google.maps.Map(target, options);
+      var h = $('.signup .left').height() - 3;
+      var target = $('.map .canvas');
+      target.css({'height': h});
+      var map = new google.maps.Map(target.get(0), options);
     };
     
+    $.togethr.get_tweets = function (location, since_id) {
+      
+      var url = 'http://search.twitter.com/search.json';
+      var params = {
+        'geocode': location.latitude + ',' + location.longitude + ',1mi'
+      };
+      if (since_id) {
+        params['since_id'] = since_id;
+      }
+      $.ajax(
+        url, {
+          'data': params,
+          'dataType': 'jsonp',
+          'success': function (data) {
+            //console.log(data);
+            //window.setTimeout('$.togethr.get_tweets', 60000, location, data['max_id']);
+          }
+        }
+      );
+      
+    };
     var store_location = function (location) {
       $.cookie(
         'togethr-ll', 
         location.latitude + ',' + location.longitude
       );
     };
-    var default_location = {
-      'latitude': 51.5001524,
-      'longitude': -0.1262362
+    
+    var doit = function (location) {
+      render_streetview(location);
+      render_map(location);
+      $.togethr.get_tweets(location);
     };
+    
     var ll = $.cookie('togethr-ll');
     if (ll) {
       var parts = ll.split(',');
@@ -60,16 +89,20 @@ $(document).ready(
         'latitude': parts[0],
         'longitude': parts[1]
       };
-      render_map(location);
+      doit(location);
     }
     else {
       $.geolocation.find(
         function (location) {
           store_location(location);
-          render_map(location);
+          doit(location);
         },
         function () {
-          render_map(default_location);
+          var location = {
+            'latitude': 51.5001524,
+            'longitude': -0.1262362
+          };
+          doit(location);
         }
       );
     }

@@ -34,7 +34,7 @@
           element.append(
             '<li class="article">' +
               '<div class="metadata">' +
-                '<div class="via"><span>commit:&nbsp;</span><a href="' + commits[c].url + '">' + commits[c].id.substr(0, 8) + ' &hellip;</a></div>' +
+                '<div class="via"><span>commit:&nbsp;</span><a href="http://github.com' + commits[c].url + '">' + commits[c].id.substr(0, 8) + ' &hellip;</a></div>' +
                 '<div class="via"><span>tree:</span><a href="https://github.com/thruflo/togethr">' + commits[c].tree.substr(0, 8) + ' &hellip;</a></div>' +
               '</div>' +
               '<div class="avatar-box">' +

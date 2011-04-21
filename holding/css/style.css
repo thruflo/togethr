@@ -57,6 +57,10 @@ img.bg {
   display: block; 
   margin-bottom: 2em;
 }
+.vertical-spacer {
+  clear: both;
+  margin: 7em;
+}
 .bottom {
   position: absolute; 
   display: block; 
@@ -137,16 +141,34 @@ img.bg {
 }
 .map .canvas {
   width: 444px;
-  height: 200px;
+  height: 215px;
 }
 .signup .blurb {
-  margin-bottom: 10px;
-  font-size: 150%;
+  font-size: 170%;
   line-height: 1.2em;
 }
 .signup .blurb p {
-  font-size: 75%;
-  padding: 1em 0em;
+  font-size: 70%;
+  padding: 1em 0em 1.5em 0em;
+  line-height: 1.15em;
+}
+.signup .text-input {
+  font-family: "Franklin Gothic", Verdana, Arial, sans-serif; 
+  width: 293px;
+  height: 36px;
+  color: #999;
+  font-size: 85%;
+  padding: 0 10px;
+  border: 3px solid #E6E6E6;
+  margin-right: 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -moz-outline-radius: 5px;
+  float: left;
+}
+.signup .text-input:focus {
+  color: #333;
 }
 
 .stream {
